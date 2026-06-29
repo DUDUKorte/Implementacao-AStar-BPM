@@ -172,8 +172,8 @@ int main() {
             }
             // Aviso se colocar valores muito altos
             if (largura_labirinto * altura_labirinto > 4225) {
-                ImGui::TextColored(ImVec4(0.9, 0.2, 0.2, 255), "CUIDADO!!!!!");
-                ImGui::TextColored(ImVec4(0.9, 0.2, 0.2, 255), "Valores muito altos podem afetar o desempenho!");
+                ImGui::TextColored(ImVec4(0.9f, 0.2f, 0.2f, 255), "CUIDADO!!!!!");
+                ImGui::TextColored(ImVec4(0.9f, 0.2f, 0.2f, 255), "Valores muito altos podem afetar o desempenho!");
             }
             // Botão pra recarregar o labirinto
             if (ImGui::Button("Recarregar Labirinto")) {
@@ -266,11 +266,11 @@ int main() {
         ImGui::Text("Encontrou Solução: %d", estado.dados.encontrou_solucao);
         ImGui::Text("Entrada: (%d, %d)", estado.dados.entrada.x, estado.dados.entrada.y);
         ImGui::Text("Fator Ramificação: %lf", estado.dados.fator_ramificacao_medio);
-        ImGui::Text("Nome Arquivo: %s", estado.dados.nome_arquivo);
+        //ImGui::Text("Nome Arquivo: %s", estado.dados.nome_arquivo);
         ImGui::Text("Nós expandidos: %d", estado.dados.nos_expandidos);
         ImGui::Text("Nós gerados: %d", estado.dados.nos_gerados);
         ImGui::Text("Nós visitados: %d", estado.dados.nos_visitados);
-        ImGui::Text("Número labirinto: %d", estado.dados.numero_labirinto);
+        //ImGui::Text("Número labirinto: %d", estado.dados.numero_labirinto);
         ImGui::Text("Profundiade solução %d", estado.dados.profundidade_solucao);
         ImGui::Text("Resultado %s", estado.dados.resultado == AStar::SUCESSO ? "SUCESSO" : "FALHA");
         ImGui::Text("Saída: (%d, %d)", estado.dados.saida.x, estado.dados.saida.y);
@@ -289,11 +289,11 @@ int main() {
         ImGui::Text("Encontrou Solução: %d", metricas.encontrou_solucao);
         ImGui::Text("Entrada: (%d, %d)", metricas.entrada.x, metricas.entrada.y);
         //ImGui::Text("Fator Ramificação: %lf", metricas.fator_ramificacao_medio);
-        ImGui::Text("Nome Arquivo: %s", metricas.nome_arquivo);
+        //ImGui::Text("Nome Arquivo: %s", metricas.nome_arquivo);
         ImGui::Text("Nós expandidos: %d", metricas.nos_expandidos);
         ImGui::Text("Nós visitados: %d", metricas.nos_explorados.size());
         ImGui::Text("Nós gerados: %d", metricas.nos_gerados);
-        ImGui::Text("Número labirinto: %d", metricas.numero_labirinto);
+        //ImGui::Text("Número labirinto: %d", metricas.numero_labirinto);
         ImGui::Text("Profundiade solução %d", metricas.profundidade_solucao);
         ImGui::Text("Resultado %s", metricas.resultado == BPM::SUCESSO ? "SUCESSO" : "FALHA");
         ImGui::Text("Saída: (%d, %d)", metricas.saida.x, metricas.saida.y);
@@ -306,7 +306,7 @@ int main() {
         // Rendering
         ImGui::Render();
         SDL_SetRenderScale(renderer, io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);
-        SDL_SetRenderDrawColorFloat(renderer, 0.3, 0.3, 0.3, 255);
+        SDL_SetRenderDrawColorFloat(renderer, 0.3f, 0.3f, 0.3f, 255);
         SDL_RenderClear(renderer);
         ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
         SDL_RenderPresent(renderer);

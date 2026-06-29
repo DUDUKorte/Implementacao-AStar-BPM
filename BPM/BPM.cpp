@@ -13,11 +13,11 @@
 #include "BPM.h"
 
 namespace BPM {
-	// Uma matriz para saber nos visitados, com 'n' linhas com 'm' colunas, tudo falso
-	std::vector<std::vector<bool>> visitados;
-	No* raiz;
-	No* noEstado;
-	std::vector<No*> fila;
+    // Uma matriz para saber nos visitados, com 'n' linhas com 'm' colunas, tudo falso
+    std::vector<std::vector<bool>> visitados;
+    No* raiz;
+    No* noEstado;
+    std::vector<No*> fila;
 
     // Entrada do labirinto, saida do labirinto e nos criados pelo algoritmo
     Posicao entrada = { 0, 1 }; // entrada fixa
@@ -28,13 +28,13 @@ namespace BPM {
     //////////// HEURISTICA (Distancia Euclidiana ao Quadrado) ///////////////
     //////////////////////////////////////////////////////////////////////////
 
-	double calcularHeuristica(Posicao atual, Posicao destino){
-		// Calculo de distancia simples
-		int dx = atual.x - destino.x;
-		int dy = atual.y - destino.y;
+    double calcularHeuristica(Posicao atual, Posicao destino) {
+        // Calculo de distancia simples
+        int dx = atual.x - destino.x;
+        int dy = atual.y - destino.y;
 
-		return (dx * dx) + (dy * dy);
-	}
+        return (dx * dx) + (dy * dy);
+    }
     //////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -42,7 +42,7 @@ namespace BPM {
     //////////// OBTER SUCESSORES DO NÓ ATUAL ///////////////
     /////////////////////////////////////////////////////////
 
-	std::vector<No*> obter_sucessores(No* noAtual, const Matriz& labirinto, const std::vector<std::vector<bool>>& visitados){
+    std::vector<No*> obter_sucessores(No* noAtual, const Matriz& labirinto, const std::vector<std::vector<bool>>& visitados) {
         std::vector<No*> sucessores;            // Vetor de sucessores
         int linhas = labirinto.size();     // tamanho das linhas do labirinto 
         int colunas = labirinto[0].size(); // tamanho das colunas do labirinto
@@ -68,7 +68,7 @@ namespace BPM {
             }
         }
         return sucessores;
-	}
+    }
     ///////////////////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ namespace BPM {
     ///////////////////////////////////////////////////////////
 
 
-    void ordenar_fila(std::vector<No*>& fila){
+    void ordenar_fila(std::vector<No*>& fila) {
         // Usando ordenação sort para ordenar a fila para quem tiver a menor distancia ser o primeiro a ser escolhido
         std::sort(fila.begin(), fila.end(), [](No* a, No* b) {
             return calcularHeuristica(a->estado, saida) < calcularHeuristica(b->estado, saida);
@@ -88,7 +88,7 @@ namespace BPM {
     //////////// ALGORITMO DE BUSCA DO PRIMEIRO MELHOR ///////////////
     //////////////////////////////////////////////////////////////////
 
-    DadosUteis Init(const Matriz& labirinto){
+    DadosUteis Init(const Matriz& labirinto) {
         DadosUteis nova_metricas;
         visitados.clear();
         fila.clear();
@@ -103,6 +103,13 @@ namespace BPM {
         visitados.assign(n, std::vector<bool>(m, false));
 
         // Metricas que serão guardadas
+        nova_metricas.linhas = n;
+        nova_metricas.colunas = m;
+        nova_metricas.custo_solucao = -1;
+        nova_metricas.profundidade_solucao = -1;
+        nova_metricas.tamanho_caminho = 0;
+        nova_metricas.encontrou_solucao = false;
+        nova_metricas.resultado = FALHA;
         nosCriados = 0;
         nova_metricas.caminho_solucao.clear();
         nova_metricas.nos_expandidos = 0;
@@ -118,7 +125,7 @@ namespace BPM {
         return nova_metricas;
     }
 
-    Resultado Iterate(const Matriz& labirinto, DadosUteis& Metricas){
+    Resultado Iterate(const Matriz& labirinto, DadosUteis& Metricas) {
         if (Metricas.resultado == SUCESSO) {
             return SUCESSO;
         }
@@ -141,6 +148,10 @@ namespace BPM {
 
             // Inverte para ficar do início ao fim, pois ele foi guardado de forma inversa
             reverse(Metricas.caminho_solucao.begin(), Metricas.caminho_solucao.end());
+
+            Metricas.custo_solucao = Metricas.caminho_solucao.size() - 1;
+            Metricas.profundidade_solucao = Metricas.caminho_solucao.size() - 1;
+            Metricas.tamanho_caminho = Metricas.caminho_solucao.size();
 
             // SUCESSO!!!
             Metricas.resultado = SUCESSO;
@@ -177,7 +188,7 @@ namespace BPM {
         fila.erase(fila.begin());
     }
 
-    Resultado buscaPrimeiroMelhor(const Matriz& labirinto, DadosUteis& Metricas){
+    Resultado buscaPrimeiroMelhor(const Matriz& labirinto, DadosUteis& Metricas) {
         // Sempre verdade até dentro do codigo forçar sair
         Init(labirinto);
         while (Metricas.resultado != SUCESSO) {
@@ -186,7 +197,7 @@ namespace BPM {
         return Metricas.resultado;
     }
 
-    void calcularMediasBPM(const Matriz& LABIRINTO, int quantidadeLabirintos){
+    void calcularMediasBPM(const Matriz& LABIRINTO, int quantidadeLabirintos) {
         double somaNosGerados = 0;
         double somaNosExpandidos = 0;
         double somaTempo = 0;
