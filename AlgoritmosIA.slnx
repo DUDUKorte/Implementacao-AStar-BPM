@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="AlgoritmosIA/AlgoritmosIA.vcxproj" Id="61bd0dff-766c-4614-b4e4-ee4e0f3cc464" />
+  <Project Path="AlgoritmosIA/vendor/SDL3/VisualC/SDL/SDL.vcxproj" Id="81ce8daf-ebb2-4761-8e45-b71abcca8c68" />
+  <Project Path="AStar/AStar.vcxproj" Id="bd239175-0274-4bf4-8855-5d923cbe5cfd" />
+  <Project Path="BPM/BPM.vcxproj" Id="a1fb8177-5d8b-42b4-84dd-55236d437eb9" />
+</Solution>
