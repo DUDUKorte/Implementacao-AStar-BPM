@@ -32,6 +32,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\LerLabirinto.cpp" />
+    <ClCompile Include="src\Widgets.cpp" />
     <ClCompile Include="vendor\imgui-1.92.8-docking\backends\imgui_impl_sdl3.cpp" />
     <ClCompile Include="vendor\imgui-1.92.8-docking\backends\imgui_impl_sdlrenderer3.cpp" />
     <ClCompile Include="vendor\imgui-1.92.8-docking\imgui.cpp" />
@@ -42,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\LerLabirinto.h" />
+    <ClInclude Include="src\Widgets.h" />
     <ClInclude Include="vendor\imgui-1.92.8-docking\backends\imgui_impl_sdl3.h" />
     <ClInclude Include="vendor\imgui-1.92.8-docking\backends\imgui_impl_sdlrenderer3.h" />
     <ClInclude Include="vendor\imgui-1.92.8-docking\examples\example_allegro5\imconfig_allegro5.h" />
@@ -167,6 +169,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>..\BPM\;..\AStar\;.\vendor\imgui-1.92.8-docking\;.\vendor\SDL3\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-pthread %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
