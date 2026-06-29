@@ -33,7 +33,7 @@
 // Função que recarrega o Labirinto com base nos valores fornecidos
 Matriz LoadMaze(int altura, int largura) {
     // Monta o nome do arquivo do labirinto escolhido
-    std::string nomeDoArquivo = std::format("data/maze_{0}x{1}.csv", altura, largura);
+    std::string nomeDoArquivo = std::format("data/maze_{0}x{1}.csv", largura, altura);
 
     // Pega um entre os 5 labirintos aleatórios no arquivo
     std::random_device rd;
