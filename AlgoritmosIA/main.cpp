@@ -208,6 +208,8 @@ int main() {
             ImGui::SameLine();
             // Botão que roda os dois algoritmos em MultiThread para comparar tempo de execução
             if (ImGui::Button("MT RUN!")) {
+                auto_run_aStar = false;
+                auto_run_BPM = false;
                 std::thread astar_thread([&LABIRINTO, &estado]() {
                     estado = AStar::Init(LABIRINTO, 1);
                     auto inicioTempo = std::chrono::high_resolution_clock::now();
@@ -246,7 +248,11 @@ int main() {
             ImGui::SameLine();
             ImGui::Checkbox("Auto BPM", &auto_run_BPM);
 
+            ImGui::Separator();
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+            if(ImGui::Button("Sair")){
+                done = true;
+            }
             ImGui::End();
         }
 
